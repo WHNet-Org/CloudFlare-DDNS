@@ -1,18 +1,18 @@
-Write-Host -ForegroundColor Green "Initialising..."
+Write-Host -ForegroundColor Green "$(Get-Date -Format s) - Initialising..."
 
 #region Imports
-Write-Host -NoNewline -ForegroundColor Yellow "Importing modules ... "
+Write-Host -NoNewline -ForegroundColor Yellow "$(Get-Date -Format s) - Importing modules ... "
 $RequiredModules = @('CloudFlare', 'Helpers')
 foreach ($RequiredModule in $RequiredModules) {
     Import-Module -Name $(Join-Path $PSScriptRoot "Modules\$RequiredModule.psm1") -Force
 }
-Write-Host -NoNewline -ForegroundColor Green "`rImporting modules ... Done !"
+Write-Host -NoNewline -ForegroundColor Green "`r$(Get-Date -Format s) - Importing modules ... Done !"
 Write-Host ""
 #endregion
 
 
 #region Initialize environment variables
-Write-Host -NoNewline -ForegroundColor Yellow "Initializing environment variables ... "
+Write-Host -NoNewline -ForegroundColor Yellow "$(Get-Date -Format s) - Initializing environment variables ... "
 if (Test-Path -Path $(Join-Path -Path $PSScriptRoot -ChildPath "Conf\Env.ps1")) {
     # Import Conf\Env.ps1 local config if file exist
     . $(Join-Path -Path $PSScriptRoot -ChildPath "Conf\Env.ps1")
@@ -34,7 +34,7 @@ $EnvVars = @{
 }
 
 Initialize-EnvironmentVariables -Variables $EnvVars
-Write-Host -NoNewline -ForegroundColor Green "`rInitializing environment variables ... Done !"
+Write-Host -NoNewline -ForegroundColor Green "`r$(Get-Date -Format s) - Initializing environment variables ... Done !"
 Write-Host ""
 #endregion
 
@@ -44,4 +44,4 @@ Check -Path $stateFile
 $State = Get-Content -Path $stateFile | ConvertFrom-Json -AsHashtable
 #endregion
 
-Write-Host -ForegroundColor Green "Starting $env:AppConfig_Name v$env:AppConfig_Version ..."
+Write-Host -ForegroundColor Green "$(Get-Date -Format s) - Starting $env:AppConfig_Name v$env:AppConfig_Version ..."

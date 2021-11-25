@@ -6,7 +6,7 @@ function Check($Path){
     }
 }
 function Get-PublicIP(){
-    return $(((Invoke-WebRequest -Uri "https://api.ipify.org/?format=json").Content | ConvertFrom-Json).ip)
+    return $(((Invoke-WebRequest -Uri "https://1.1.1.1/cdn-cgi/trace").Content | ConvertFrom-StringData).ip)
 }
 
 function Split-DNS ($DNS){
