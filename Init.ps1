@@ -28,9 +28,10 @@ $env:AppConfig_Version = "0.0.1"
 
 # Variables name list and defaults
 $EnvVars = @{
-    CloudFlare_Email     = ""
-    CloudFlare_APIKey    = ""
-    AppConfig_DevMode = ""
+    CloudFlare_Email  = ""
+    CloudFlare_APIKey = ""
+    AppConfig_State   = ""
+    AppConfig_DevMode = "false"
 }
 
 Initialize-EnvironmentVariables -Variables $EnvVars
@@ -39,9 +40,14 @@ Write-Host ""
 #endregion
 
 #region Get state
-$stateFile = Join-Path -Path $(Split-Path -Parent -Path $MyInvocation.MyCommand.Definition) -ChildPath "Conf\State.json"
-Check -Path $stateFile
-$State = Get-Content -Path $stateFile | ConvertFrom-Json -AsHashtable
+if (![string]::IsNullOrEmpty($env:AppConfig_State)) {
+    $State = $env:AppConfig_State | ConvertFrom-Json -AsHashtable
+}
+else {
+    $StateData = Join-Path -Path $(Split-Path -Parent -Path $MyInvocation.MyCommand.Definition) -ChildPath "Conf\State.json"
+    Check -Path $StateData
+    $State = Get-Content -Path $StateData | ConvertFrom-Json -AsHashtable
+}
 #endregion
 
 Write-Host -ForegroundColor Green "$(Get-Date -Format s) - Starting $env:AppConfig_Name v$env:AppConfig_Version ..."
