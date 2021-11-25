@@ -3,6 +3,7 @@ while ($true) {
     #$InvocationPath = $MyInvocation.MyCommand.Definition
 
     $CurrentIP = Get-PublicIP
+    Write-Host -ForegroundColor Magenta "$(Get-Date -Format s) - Current IP is : $CurrentIP"
 
     $SplittedDNS = @()
 
