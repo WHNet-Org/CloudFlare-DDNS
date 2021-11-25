@@ -5,7 +5,7 @@ FROM docker-hub-cache.whnet.ca/library/alpine:latest
 
 RUN apk add --no-cache ca-certificates less ncurses-terminfo-base krb5-libs libgcc libintl libssl1.1 libstdc++ tzdata userspace-rcu zlib icu-libs curl supervisor
 
-RUN mkdir /code && mkdir /etc/nginx/sites-enabled
+RUN mkdir /code
 COPY . /code/
 COPY Dockerfiles/supervisord.conf /etc/supervisord.conf
 
