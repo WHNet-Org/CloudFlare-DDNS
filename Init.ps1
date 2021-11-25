@@ -31,6 +31,7 @@ $EnvVars = @{
     CloudFlare_Email  = ""
     CloudFlare_APIKey = ""
     AppConfig_State   = ""
+    AppConfig_Sleep   = "300"
     AppConfig_DevMode = "false"
 }
 
