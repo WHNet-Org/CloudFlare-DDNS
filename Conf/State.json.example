@@ -1,3 +1,13 @@
 {
-    "records":["contoso.com","mail.contoso.com","wiki.contoso.com"]
+	"records": {
+		"contoso.com": [{
+			"type": "a"
+		}],
+		"mail.contoso.com": [{
+			"type": "a"
+		}],
+		"wiki.contoso.com": [{
+			"type": "a"
+		}]
+	}
 }
