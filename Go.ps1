@@ -11,7 +11,7 @@ while ($true) {
         $SplittedDNS += Split-DNS -DNS $Record
     }
 
-    foreach ($Domain in $($SplittedDNS | Select-Object Domain | Get-Unique).Domain) {
+    foreach ($Domain in $($SplittedDNS | Select-Object Domain -Unique).Domain) {
         $CloudFlareDNSRecords = Get-CloudFlareZoneDNSRecord -ZoneID $(Get-CloudFlareZone | Where-Object { $_.name -eq $Domain }).id
         foreach ($CloudFlareDNSRecord in $($CloudFlareDNSRecords | Where-Object { $($State.records.keys) -contains $_.name })) {
             Write-Host -NoNewline -ForegroundColor Yellow "$(Get-Date -Format s) - Updating $($CloudFlareDNSRecord.name) ... "

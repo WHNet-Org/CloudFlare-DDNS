@@ -24,7 +24,7 @@ Else {
 
 # Hard coded / read-only variables
 $env:AppConfig_Name = "CloudFlare DDNS"
-$env:AppConfig_Version = "0.0.1"
+$env:AppConfig_Version = "0.0.2"
 
 # Variables name list and defaults
 $EnvVars = @{
