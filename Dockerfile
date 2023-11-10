@@ -1,4 +1,4 @@
-FROM docker-hub-cache.whnet.ca/powershell:alpine-3.14
+FROM harbor.whnet.ca/microsoft/powershell:alpine-3.14
 
 RUN mkdir /code
 COPY . /code/
